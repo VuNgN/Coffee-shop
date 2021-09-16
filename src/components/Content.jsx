@@ -14,7 +14,7 @@ const renderItem = function (item, key) {
 
 const useStyles = makeStyles({
   "mt-10": {
-    "margin-top": "10px"
+    "margin-top": "15%"
   }
 });
 

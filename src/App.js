@@ -1,23 +1,35 @@
 import "./styles.css";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
 import { Grid } from "@material-ui/core";
-import Header from "./Header";
-import Content from "./Content";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Home from "./components/home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AppBarProvider } from "./components/context/appBarContext";
 
 export default function App() {
   return (
-    <Grid container direction="column">
-      <Grid item>
-        <Header />
-      </Grid>
-      <Grid item container>
-        <Grid item xs={false} sm={2} />
-        <Grid item xs={12} sm={8}>
-          <Content />
+    <AppBarProvider>
+      <Router>
+        <Grid container direction="column">
+          <Grid item>
+            <Header />
+          </Grid>
+          <Grid item container>
+            <Grid item xs={false} sm={2} />
+            <Grid item xs={12} sm={8}>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/product">
+                  <Content />
+                </Route>
+              </Switch>
+            </Grid>
+            <Grid item xs={false} sm={2} />
+          </Grid>
         </Grid>
-        <Grid item xs={false} sm={2} />
-      </Grid>
-    </Grid>
+      </Router>
+    </AppBarProvider>
   );
 }

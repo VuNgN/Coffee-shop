@@ -12,6 +12,9 @@ import IconButton from "@material-ui/core/IconButton";
 import ShareIcon from "@material-ui/icons/Share";
 
 const useStyles = makeStyles({
+  root: {
+    width: "100%"
+  },
   title: {
     display: "-webkit-box",
     "-webkit-line-clamp": 1,
@@ -19,7 +22,8 @@ const useStyles = makeStyles({
     overflow: "hidden"
   },
   cardMedia: {
-    height: "150px"
+    height: 0,
+    paddingTop: "100%"
   },
   description: {
     display: "-webkit-box",
@@ -37,7 +41,7 @@ export default function CoffeCard({
 }) {
   const classes = useStyles();
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
         avatar={<Avatar src={avatarUrl}></Avatar>}
         action={
