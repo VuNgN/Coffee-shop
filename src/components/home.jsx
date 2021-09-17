@@ -1,11 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import "./css/home.css";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { appBarContext } from "./context/appBarContext";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography, Grid, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   BottomInTitle: {
@@ -18,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
+  },
+  licenses: {
+    color: theme.palette.grey[500]
   }
 }));
 
@@ -72,6 +72,16 @@ export default () => {
               Products
             </Button>
           </Link>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            className={classes.licenses}
+            variant="caption"
+            display="block"
+            gutterBottom
+          >
+            © 2021 NGUYEN NGOC VU
+          </Typography>
         </Grid>
       </Grid>
     </div>

@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { appBarContext } from "../context/appBarContext";
 
 export default ({ classes, name, icon, index, path }) => {
@@ -15,8 +13,13 @@ export default ({ classes, name, icon, index, path }) => {
       })}
       to={path}
     >
-      <ListItem button>
-        <ListItemIcon>{icon}</ListItemIcon>
+      <ListItem
+        className={classNames(classes.listItem, {
+          [classes.borderRight]: isSelected === index
+        })}
+        button
+      >
+        <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
         <ListItemText>{name}</ListItemText>
       </ListItem>
     </Link>

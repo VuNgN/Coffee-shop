@@ -1,50 +1,57 @@
-import { AppBar, Toolbar, makeStyles } from "@material-ui/core";
-import React from "react";
-import { Grid } from "@material-ui/core";
-import List from "@material-ui/core/List";
-import { white } from "material-ui/styles/colors";
+import { AppBar, Toolbar, Drawer } from "@material-ui/core";
+import React, { useContext } from "react";
+import { Grid, List, IconButton, Typography } from "@material-ui/core";
 import AppBarItem from "./appBarItem";
 import listBtn from "./listBtn";
-
-const useStyle = makeStyles((theme) => ({
-  selectdItem: {
-    "&:hover": {
-      opacity: "0.5",
-      color: "white",
-      "& .MuiListItemIcon-root": {
-        color: "white"
-      }
-    }
-  },
-  borderBottom: {
-    "border-bottom": "2px solid #fff"
-  },
-  TypographyStyles: {
-    flex: 1,
-    cursor: "pointer"
-  },
-  logoPage: {
-    cursor: "pointer"
-  },
-  linkText: {
-    textDecoration: "none",
-    color: white
-  },
-  listBar: {
-    display: "flex",
-    alignItems: "center"
-  }
-}));
+import MenuIcon from "@material-ui/icons/Menu";
+import classNames from "classnames/bind";
+import DrawAppBar from "./drawAppBar";
+import { appBarContext } from "../context/appBarContext";
+import style from "./style";
 
 const renderListItem = (classes, item, key) => {
   return <AppBarItem classes={classes} {...item} key={key} />;
 };
 
-export default function Header(props) {
+export default function Header() {
+  const { open, changeOpen, drawerWidth } = useContext(appBarContext);
+  const useStyle = style(drawerWidth);
   const classes = useStyle();
+  const handleDrawerOpen = () => {
+    changeOpen(true);
+  };
+  const handleDrawerClose = () => {
+    changeOpen(false);
+  };
   return (
     <AppBar position="fixed">
       <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          className={classNames(classes.menuButton, open && classes.hide)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" noWrap className={classes.menuTitle}>
+          Coffee shop
+        </Typography>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <DrawAppBar
+            renderListItem={renderListItem}
+            handleDrawerClose={handleDrawerClose}
+          />
+        </Drawer>
         <Grid container>
           <Grid item xs={false} sm={2} />
           <List className={classes.listBar}>

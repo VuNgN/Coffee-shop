@@ -1,10 +1,9 @@
 import "./styles.css";
 import { Grid } from "@material-ui/core";
 import Header from "./components/header/Header";
-import Content from "./components/Content";
-import Home from "./components/home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { AppBarProvider } from "./components/context/appBarContext";
+import Routers from "./components/Routers";
 
 export default function App() {
   return (
@@ -17,14 +16,7 @@ export default function App() {
           <Grid item container>
             <Grid item xs={false} sm={2} />
             <Grid item xs={12} sm={8}>
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route exact path="/product">
-                  <Content />
-                </Route>
-              </Switch>
+              <Routers />
             </Grid>
             <Grid item xs={false} sm={2} />
           </Grid>
