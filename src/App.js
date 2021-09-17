@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Grid } from "@material-ui/core";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Content from "./components/Content";
 import Home from "./components/home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
